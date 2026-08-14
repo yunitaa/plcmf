@@ -1,0 +1,7 @@
+"Periode","Region","ADF_Statistic","P_Value","Lag_q_AIC","Stasioner","Kesimpulan"
+"PERIOD_1","region_1",-15.764,0.01,20,TRUE,"Stasioner"
+"PERIOD_1","region_2",-17.2136,0.01,20,TRUE,"Stasioner"
+"PERIOD_1","region_3",-18.0348,0.01,20,TRUE,"Stasioner"
+"PERIOD_1","region_4",-14.3413,0.01,20,TRUE,"Stasioner"
+"PERIOD_1","region_5",-11.8842,0.01,20,TRUE,"Stasioner"
+"PERIOD_1","region_6",-20.7901,0.01,20,TRUE,"Stasioner"
