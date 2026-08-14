@@ -87,15 +87,16 @@ and RMSE win-counts) mirrors the rows of `all_metrics.csv`.
 
 ### Results from the R analysis pipeline → `output_analysis/`
 
-This directory is created by `plcmf_analysis.r`. Committed outputs currently
-present, plus files regenerated on each run:
+This directory is created by `plcmf_analysis.r`. A complete run of the script
+produces:
 
 **Numerical results (CSV)**
 
 | File | Content |
 |------|---------|
 | `plcmf_values_period_1..3.csv` | PLCMF partial-correlation values per lag per region pair (`PLCMF_Value`, `Sig_PLCMF`, `Bound`) |
-| `granger_values_period_1..3.csv` | Granger causality p-values per region pair (older export; the current script also writes `granger_aic_period_*.csv` with the lag order `p*`) |
+| `granger_aic_period_1..3.csv` | Granger causality p-values per region pair with the AIC-selected optimal lag order `p*` |
+| `granger_values_period_1..3.csv` | Granger causality p-values per region pair (from an earlier run) |
 | `gru_features_period_1..3.csv` | Final recommended GRU input features per region: own PACF lags + cross-region PLCMF/Granger-significant lags |
 | `adf_test_period_*.csv` | ADF stationarity test statistic, p-value, and selected lag per region |
 | `adf_summary_table2a.csv` | ADF results across all periods (paper Table 2a) |
