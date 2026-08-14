@@ -303,7 +303,7 @@ export_adf_summary_table <- function(adf_results, output_dir = OUTPUT_DIR) {
     summary_tbl[[paste0(toupper(period), "_kes")]]  <- sub$Kesimpulan
   }
 
-  out_path <- file.path(output_dir, "adf_summary_table2a.csv")
+  out_path <- file.path(output_dir, "adf_summary_table3.csv")
   write.csv(summary_tbl, out_path, row.names = FALSE)
   cat(sprintf("\n  Tabel Ringkasan ADF (Tabel 2a) tersimpan: %s\n", out_path))
 
@@ -1134,7 +1134,7 @@ export_pstar_distribution_table <- function(granger_results,
   }
   tbl$Total <- rowSums(tbl[, -1])
 
-  out_path <- file.path(output_dir, "pstar_distribution_table2b.csv")
+  out_path <- file.path(output_dir, "pstar_distribution_table5.csv")
   write.csv(tbl, out_path, row.names = FALSE)
   cat(sprintf("\n  Tabel Distribusi p* (Tabel 2b) tersimpan: %s\n", out_path))
 
@@ -1415,7 +1415,7 @@ run_full_analysis <- function(data_list,
   # Tabel 3 (Section 4.1): BH-FDR sensitivity summary
   bh_all <- do.call(rbind, lapply(names(all_results), function(p)
     all_results[[p]]$bh_result$summary_df))
-  path_tbl3 <- file.path(output_dir, "bh_fdr_all_periods_table3.csv")
+  path_tbl3 <- file.path(output_dir, "bh_fdr_all_periods_table4.csv")
   write.csv(bh_all, path_tbl3, row.names = FALSE)
   cat(sprintf("\n  Tabel BH-FDR semua periode (Tabel 3) tersimpan: %s\n", path_tbl3))
 
