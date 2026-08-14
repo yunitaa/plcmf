@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# uv
+.venv/
+
+# Script output
+hasil_MIMO_GRU_jurnal/
+
+# macOS
+.DS_Store
