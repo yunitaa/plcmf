@@ -16,7 +16,7 @@ The repository is split into two pipelines:
 - [uv](https://docs.astral.sh/uv/) (Python package manager)
 - Python 3.13 (managed automatically by uv)
 - Data CSVs (see [Data](#data))
-- R (only for the optional R analysis pipeline)
+- R (for the R analysis pipeline)
 
 ## Setup
 
@@ -33,6 +33,14 @@ This creates a `.venv/` and installs `numpy`, `pandas`, `matplotlib`,
 `scikit-learn`, and `tensorflow` exactly as pinned in `uv.lock`.
 
 ## Data
+
+> **Data availability disclaimer:** The load datasets used in this study are
+> proprietary to PT PLN (Persero) and are subject to copyright/confidentiality
+> restrictions. They are therefore **not** included in this repository and
+> cannot be redistributed. All code, methodology, and output files are fully
+> provided; to reproduce the results, supply your own data in the format below.
+> For a data-free smoke test of the R pipeline, `plcmf_analysis.r` includes a
+> `generate_synthetic_data()` function (see "OPSI A" in the script).
 
 Place the following CSVs in the repository root. Each file must contain a
 `date`, `time`, and load columns named `region-1` ... `region-6` (or
@@ -104,7 +112,7 @@ present, plus files regenerated on each run:
 | `bh_fdr_period_*.png` | Significant elements before vs. after BH-FDR per lag |
 | `granger_period_*.png`, `granger_aic_period_*.png` | Granger causality p-value map and significance map |
 
-## Optional: R analysis
+## R analysis
 
 Run `plcmf_analysis.r` in R/RStudio to reproduce the feature-selection analysis
 that derives the feature masks hard-coded in `MIMO-GRU-PLCMF.py`. Edit
