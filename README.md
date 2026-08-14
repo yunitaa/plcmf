@@ -123,7 +123,7 @@ traced to a file in this repository:
 | Forecast accuracy tables (RMSE / MAPE / SMAPE, `SW` vs `PACF` vs `PLCMF`) | `hasil_MIMO_GRU_jurnal/all_metrics.csv` |
 | Rolling one-step-ahead forecasts (actual vs predicted) | `hasil_MIMO_GRU_jurnal/forecast_*.csv` |
 | Forecast plots (actual vs forecast, per configuration) | `hasil_MIMO_GRU_jurnal/plot_test_*.png` |
-| ADF stationarity results per period (Table 2a) | `output_analysis/adf_test_period_*.csv`, `output_analysis/adf_summary_table2a.csv` |
+| ADF stationarity results per period (Table 3) | `output_analysis/adf_test_period_*.csv`, `output_analysis/adf_summary_table2a.csv` |
 | Granger causality optimal lag order `p*` (Table 2b) | `output_analysis/pstar_distribution_table2b.csv`, `output_analysis/pstar_detail.csv` |
 | Granger causality p-values per region pair | `output_analysis/granger_aic_period_*.csv` (legacy: `granger_values_period_*.csv`) |
 | PLCMF partial-correlation values per lag | `output_analysis/plcmf_values_period_*.csv` |
