@@ -112,6 +112,23 @@ present, plus files regenerated on each run:
 | `bh_fdr_period_*.png` | Significant elements before vs. after BH-FDR per lag |
 | `granger_period_*.png`, `granger_aic_period_*.png` | Granger causality p-value map and significance map |
 
+### Mapping results to the manuscript
+
+Every derived numerical result and figure reported in the manuscript can be
+traced to a file in this repository:
+
+| Manuscript item | Location |
+|-----------------|----------|
+| Forecast accuracy tables (RMSE / MAPE / SMAPE, `SW` vs `PACF` vs `PLCMF`) | `hasil_MIMO_GRU_jurnal/all_metrics.csv` |
+| Rolling one-step-ahead forecasts (actual vs predicted) | `hasil_MIMO_GRU_jurnal/forecast_*.csv` |
+| Forecast plots (actual vs forecast, per configuration) | `hasil_MIMO_GRU_jurnal/plot_test_*.png` |
+| ADF stationarity results per period (Table 2a) | `output_analysis/adf_test_period_*.csv`, `output_analysis/adf_summary_table2a.csv` |
+| Granger causality optimal lag order `p*` (Table 2b) | `output_analysis/pstar_distribution_table2b.csv`, `output_analysis/pstar_detail.csv` |
+| Granger causality p-values per region pair | `output_analysis/granger_aic_period_*.csv` (legacy: `granger_values_period_*.csv`) |
+| PLCMF partial-correlation values per lag | `output_analysis/plcmf_values_period_*.csv` |
+| BH-FDR multiple-testing correction (Table 3) | `output_analysis/bh_fdr_summary_period_*.csv`, `output_analysis/bh_fdr_all_periods_table3.csv` |
+| CCF / PLCMF / Granger / BH-FDR figures | `output_analysis/ccf_period_*.png`, `plcmf_heatmap_period_*.png`, `plcmf_lines_period_*.png`, `granger_aic_period_*.png`, `bh_fdr_period_*.png` |
+
 ## R analysis
 
 Run `plcmf_analysis.r` in R/RStudio to reproduce the feature-selection analysis
