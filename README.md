@@ -37,8 +37,8 @@ This creates a `.venv/` and installs `numpy`, `pandas`, `matplotlib`,
 > **Data availability disclaimer:** The load datasets used in this study are
 > proprietary to PT PLN (Persero) and are subject to copyright/confidentiality
 > restrictions. They are therefore **not** included in this repository and
-> cannot be redistributed. All code, methodology, and output files are fully
-> provided; to reproduce the results, supply your own data in the format below.
+> cannot be redistributed. To reproduce the results, supply your own data in
+> the format below.
 > For a data-free smoke test of the R pipeline, `plcmf_analysis.r` includes a
 > `generate_synthetic_data()` function (see "OPSI A" in the script).
 
@@ -59,22 +59,34 @@ uv run python MIMO-GRU-PLCMF.py
 ```
 
 The script runs the `SW`, `PACF`, and `PLCMF` configurations for all three
-periods and writes every result to **`hasil_MIMO_GRU_jurnal/`**.
+periods. Every result is written to **`hasil_MIMO_GRU_jurnal/`**, which is
+**generated locally by this run and is not deposited in this repository**
+(it is excluded via `.gitignore`).
 
 ## Repository structure & where to find results
 
 ```
 plcmf/
-├── MIMO-GRU-PLCMF.py            # Python forecast pipeline
-├── plcmf_analysis.r             # R feature-selection analysis pipeline
-├── pyproject.toml / uv.lock     # uv project definition & locked dependencies
-├── hasil_MIMO_GRU_jurnal/       # ← Python pipeline output (generated)
-└── output_analysis/             # ← R pipeline output (generated)
+├── MIMO-GRU-PLCMF.py            # Python forecast pipeline (deposited)
+├── plcmf_analysis.r             # R feature-selection analysis pipeline (deposited)
+├── pyproject.toml / uv.lock     # uv project definition & locked dependencies (deposited)
+├── output_analysis/             # R pipeline outputs (deposited)
+└── hasil_MIMO_GRU_jurnal/       # Python pipeline output — generated locally, NOT deposited
 ```
 
-### Results from the forecast pipeline → `hasil_MIMO_GRU_jurnal/`
+### Deposited vs. locally generated vs. restricted materials
 
-This directory is created by `MIMO-GRU-PLCMF.py`:
+| Category | Items | Status |
+|----------|-------|--------|
+| **Deposited** | `MIMO-GRU-PLCMF.py`, `plcmf_analysis.r`, `pyproject.toml`/`uv.lock` | Included in this repository/release |
+| **Deposited** | `output_analysis/` (R pipeline CSVs and figures) | Included in this repository/release |
+| **Locally generated** | `hasil_MIMO_GRU_jurnal/` forecast outputs (`all_metrics.csv`, `forecast_*.csv`, `plot_test_*.png`) | Not deposited; recreated by running `MIMO-GRU-PLCMF.py` with your own data |
+| **Restricted** | PT PLN (Persero) load datasets (`training*.csv`, `testing*.csv`) | Not redistributable; not included |
+
+### Results from the forecast pipeline → `hasil_MIMO_GRU_jurnal/` (generated locally)
+
+This directory does **not** exist in the repository; it is created by
+`MIMO-GRU-PLCMF.py` when you run it locally:
 
 | File pattern | Content |
 |--------------|---------|
@@ -85,10 +97,10 @@ This directory is created by `MIMO-GRU-PLCMF.py`:
 The final console summary (per-configuration/per-period mean MAPE, SMAPE, RMSE
 and RMSE win-counts) mirrors the rows of `all_metrics.csv`.
 
-### Results from the R analysis pipeline → `output_analysis/`
+### Results from the R analysis pipeline → `output_analysis/` (deposited)
 
-This directory is created by `plcmf_analysis.r`. A complete run of the script
-produces:
+This directory **is included in this repository**. It was produced by
+`plcmf_analysis.r`; a complete run of the script reproduces it:
 
 **Numerical results (CSV)**
 
@@ -116,19 +128,21 @@ produces:
 ### Mapping results to the manuscript
 
 Every derived numerical result and figure reported in the manuscript can be
-traced to a file in this repository:
+traced to this repository — either to a **deposited** file (`output_analysis/`)
+or to a file that is **generated locally** when `MIMO-GRU-PLCMF.py` is run
+(`hasil_MIMO_GRU_jurnal/`):
 
-| Manuscript item | Location |
-|-----------------|----------|
-| Forecast accuracy tables (RMSE / MAPE / SMAPE, `SW` vs `PACF` vs `PLCMF`) | `hasil_MIMO_GRU_jurnal/all_metrics.csv` |
-| Rolling one-step-ahead forecasts (actual vs predicted) | `hasil_MIMO_GRU_jurnal/forecast_*.csv` |
-| Forecast plots (actual vs forecast, per configuration) | `hasil_MIMO_GRU_jurnal/plot_test_*.png` |
-| ADF stationarity results per period (Table 3) | `output_analysis/adf_test_period_*.csv`, `output_analysis/adf_summary_table3.csv` |
-| Granger causality optimal lag order `p*` (Table 5) | `output_analysis/pstar_distribution_table5.csv`, `output_analysis/pstar_detail.csv` |
-| Granger causality p-values per region pair | `output_analysis/granger_aic_period_*.csv` (legacy: `granger_values_period_*.csv`) |
-| PLCMF partial-correlation values per lag | `output_analysis/plcmf_values_period_*.csv` |
-| BH-FDR multiple-testing correction (Table 4) | `output_analysis/bh_fdr_summary_period_*.csv`, `output_analysis/bh_fdr_all_periods_table4.csv` |
-| CCF / PLCMF / Granger / BH-FDR figures | `output_analysis/ccf_period_*.png`, `plcmf_heatmap_period_*.png`, `plcmf_lines_period_*.png`, `granger_aic_period_*.png`, `bh_fdr_period_*.png` |
+| Manuscript item | Location | Status |
+|-----------------|----------|--------|
+| Forecast accuracy tables (RMSE / MAPE / SMAPE, `SW` vs `PACF` vs `PLCMF`) | `hasil_MIMO_GRU_jurnal/all_metrics.csv` | Generated locally |
+| Rolling one-step-ahead forecasts (actual vs predicted) | `hasil_MIMO_GRU_jurnal/forecast_*.csv` | Generated locally |
+| Forecast plots (actual vs forecast, per configuration) | `hasil_MIMO_GRU_jurnal/plot_test_*.png` | Generated locally |
+| ADF stationarity results per period (Table 3) | `output_analysis/adf_test_period_*.csv`, `output_analysis/adf_summary_table3.csv` | Deposited |
+| Granger causality optimal lag order `p*` (Table 5) | `output_analysis/pstar_distribution_table5.csv`, `output_analysis/pstar_detail.csv` | Deposited |
+| Granger causality p-values per region pair | `output_analysis/granger_aic_period_*.csv` (legacy: `granger_values_period_*.csv`) | Deposited |
+| PLCMF partial-correlation values per lag | `output_analysis/plcmf_values_period_*.csv` | Deposited |
+| BH-FDR multiple-testing correction (Table 4) | `output_analysis/bh_fdr_summary_period_*.csv`, `output_analysis/bh_fdr_all_periods_table4.csv` | Deposited |
+| CCF / PLCMF / Granger / BH-FDR figures | `output_analysis/ccf_period_*.png`, `plcmf_heatmap_period_*.png`, `plcmf_lines_period_*.png`, `granger_aic_period_*.png`, `bh_fdr_period_*.png` | Deposited |
 
 ## R analysis
 
