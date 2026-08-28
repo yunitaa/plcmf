@@ -121,6 +121,7 @@ traced to a **deposited** file in this repository (`output_analysis/`):
 | PLCMF partial-correlation values per lag | `output_analysis/plcmf_values_period_*.csv` | Deposited |
 | BH-FDR multiple-testing correction (Table 4) | `output_analysis/bh_fdr_summary_period_*.csv`, `output_analysis/bh_fdr_all_periods_table4.csv` | Deposited |
 | CCF / PLCMF / Granger / BH-FDR figures | `output_analysis/ccf_period_*.png`, `plcmf_heatmap_period_*.png`, `plcmf_lines_period_*.png`, `granger_aic_period_*.png`, `bh_fdr_period_*.png` | Deposited |
+| Forecast accuracy per configuration (Tables 8–9) | `output_analysis/all_metrics.csv` | Deposited |
 
 ## R analysis
 
