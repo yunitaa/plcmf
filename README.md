@@ -59,9 +59,7 @@ uv run python MIMO-GRU-PLCMF.py
 ```
 
 The script runs the `SW`, `PACF`, and `PLCMF` configurations for all three
-periods. Every result is written to **`hasil_MIMO_GRU_jurnal/`**, which is
-**generated locally by this run and is not deposited in this repository**
-(it is excluded via `.gitignore`).
+periods and prints the forecast accuracy metrics to the console.
 
 ## Repository structure & where to find results
 
@@ -70,38 +68,16 @@ plcmf/
 ├── MIMO-GRU-PLCMF.py            # Python forecast pipeline (deposited)
 ├── plcmf_analysis.r             # R feature-selection analysis pipeline (deposited)
 ├── pyproject.toml / uv.lock     # uv project definition & locked dependencies (deposited)
-├── output_analysis/             # R pipeline outputs (deposited)
-└── hasil_MIMO_GRU_jurnal/       # Python pipeline output — generated locally, NOT deposited
+└── output_analysis/             # R pipeline outputs (deposited)
 ```
 
-### Deposited vs. locally generated vs. restricted materials
+### Deposited vs. restricted materials
 
 | Category | Items | Status |
 |----------|-------|--------|
 | **Deposited** | `MIMO-GRU-PLCMF.py`, `plcmf_analysis.r`, `pyproject.toml`/`uv.lock` | Included in this repository/release |
 | **Deposited** | `output_analysis/` (R pipeline CSVs and figures) | Included in this repository/release |
-| **Locally generated** | `hasil_MIMO_GRU_jurnal/` forecast outputs (`all_metrics.csv`, `forecast_*.csv`, `plot_test_*.png`) | Not deposited; recreated by running `MIMO-GRU-PLCMF.py` with your own data. These outputs are already reported in full in the journal paper. |
 | **Restricted** | PT PLN (Persero) load datasets (`training*.csv`, `testing*.csv`) | Not redistributable; not included |
-
-### Results from the forecast pipeline → `hasil_MIMO_GRU_jurnal/` (generated locally)
-
-This directory does **not** exist in the repository; it is created by
-`MIMO-GRU-PLCMF.py` when you run it locally:
-
-| File pattern | Content |
-|--------------|---------|
-| `all_metrics.csv` | **Main numerical results table.** RMSE, MAPE, SMAPE for every combination of configuration (`SW`/`PACF`/`PLCMF`) × period (`period_1`–`period_3`) × region (`region_1`–`region_6`) × split (`train`/`test`) — the source for the reported forecast accuracy values. |
-| `forecast_<config>_<period>_<region>.csv` | Rolling one-step-ahead test forecasts vs. actuals (240 steps) for each of 54 config × period × region combinations. |
-| `plot_test_<config>.png` | Actual vs. forecast plots, one figure per configuration (3×6 panel grid of period × region). |
-
-The final console summary (per-configuration/per-period mean MAPE, SMAPE, RMSE
-and RMSE win-counts) mirrors the rows of `all_metrics.csv`.
-
-> **Note:** Because these outputs are not redistributable alongside the
-> restricted source data, they are not uploaded to this repository. All of the
-> derived values and plots are already reported in the journal paper, so no
-> information is lost by their absence here; running the pipeline reproduces
-> them exactly.
 
 ### Results from the R analysis pipeline → `output_analysis/` (deposited)
 
@@ -134,15 +110,10 @@ This directory **is included in this repository**. It was produced by
 ### Mapping results to the manuscript
 
 Every derived numerical result and figure reported in the manuscript can be
-traced to this repository — either to a **deposited** file (`output_analysis/`)
-or to a file that is **generated locally** when `MIMO-GRU-PLCMF.py` is run
-(`hasil_MIMO_GRU_jurnal/`):
+traced to a **deposited** file in this repository (`output_analysis/`):
 
 | Manuscript item | Location | Status |
 |-----------------|----------|--------|
-| Forecast accuracy tables (RMSE / MAPE / SMAPE, `SW` vs `PACF` vs `PLCMF`) | `hasil_MIMO_GRU_jurnal/all_metrics.csv` | Generated locally; reported in the journal paper |
-| Rolling one-step-ahead forecasts (actual vs predicted) | `hasil_MIMO_GRU_jurnal/forecast_*.csv` | Generated locally; reported in the journal paper |
-| Forecast plots (actual vs forecast, per configuration) | `hasil_MIMO_GRU_jurnal/plot_test_*.png` | Generated locally; reported in the journal paper |
 | ADF stationarity results per period (Table 3) | `output_analysis/adf_test_period_*.csv`, `output_analysis/adf_summary_table3.csv` | Deposited |
 | Granger causality optimal lag order `p*` (Table 5) | `output_analysis/pstar_distribution_table5.csv`, `output_analysis/pstar_detail.csv` | Deposited |
 | Granger causality p-values per region pair | `output_analysis/granger_aic_period_*.csv` (legacy: `granger_values_period_*.csv`) | Deposited |
