@@ -77,7 +77,7 @@ plcmf/
 |----------|-------|--------|
 | **Deposited** | `MIMO-GRU-PLCMF.py`, `plcmf_analysis.r`, `pyproject.toml`/`uv.lock` | Included in this repository/release |
 | **Deposited** | `output_analysis/` (R pipeline CSVs and figures) | Included in this repository/release |
-| **Deposited** | `output_forecast/all_metrics.csv` — aggregate forecast error metrics (RMSE/MAPE/SMAPE per configuration × period × region × window), compiled from the forecast runs; **contains no load values** | Included in this repository/release |
+| **Deposited** | `output_analysis/all_metrics.csv` — aggregate forecast error metrics (RMSE/MAPE/SMAPE per configuration × period × region × window), compiled from the forecast runs; **contains no load values** | Included in this repository/release |
 | **Restricted** | PT PLN (Persero) load datasets (`training*.csv`, `testing*.csv`) | Not redistributable; not included |
 
 ### Results from the R analysis pipeline → `output_analysis/` (deposited)
